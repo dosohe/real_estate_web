@@ -1,0 +1,20 @@
+# # PostgreSQL. Versions 9.3 and up are supported.
+default: &default
+  adapter: postgresql
+  # host: db
+  user: postgres
+  password: NBRcPB12345Y
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: development
+
+test:
+  <<: *default
+  database: test
+
+production:
+  <<: *default
+  database: production
