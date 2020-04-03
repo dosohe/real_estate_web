@@ -1,5 +1,8 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
+  # set up a controller with account authentication
+  before_action :authenticate_account!, only: [:new, :create, :destroy]
+  before_action :set_sidebar, except: [:show]
 
   # GET /properties
   # GET /properties.json
@@ -10,21 +13,29 @@ class PropertiesController < ApplicationController
   # GET /properties/1
   # GET /properties/1.json
   def show
+    @agent = @property.account
   end
 
   # GET /properties/new
   def new
     @property = Property.new
+    
   end
 
   # GET /properties/1/edit
   def edit
   end
 
+  def set_sidebar
+    @show_sidebar = true
+  end
+
   # POST /properties
   # POST /properties.json
   def create
     @property = Property.new(property_params)
+    # current signed-in account
+    @property.account_id = current_account.id  
 
     respond_to do |format|
       if @property.save
@@ -69,6 +80,6 @@ class PropertiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def property_params
-      params.require(:property).permit(:name, :address, :price, :rooms)
+      params.require(:property).permit(:name, :address, :price, :rooms, :photo, :photo_cache)
     end
 end

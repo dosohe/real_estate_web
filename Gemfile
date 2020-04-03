@@ -33,6 +33,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # to handle the env vars on localhost
+  # gem 'figaro'
+  # gem 'figaro', '~> 1.1', '>= 1.1.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -40,3 +44,14 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'jquery-rails'
+
+# upload the images 
+gem 'carrierwave', '~> 2.0'
+# gem 'fog'
+# gem 'fog-aws'
+gem "fog-google"
+gem "google-api-client", "> 0.8.5", "< 0.9"
+gem "mime-types"
+# to resize images
+gem 'mini_magick'
+

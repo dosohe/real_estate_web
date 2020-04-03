@@ -1,0 +1,14 @@
+
+<% @properties.each do |property|%>
+<%# <%byebug%> 
+    <div class="col-4">
+        <%= link_to (property_largenail(property)), property_path(property) %>
+        <h3 class="h5 mt-3"><%= link_to property.name, property_path(property) %></h3>
+        <p><%= property.address %></p>
+        <div class="amenities">
+            <span><i data-feather="book-open"></i><%= property.price %></span>
+            <span><i data-feather="book-open"></i><%= property.rooms %></span>
+
+        </div>
+    </div>
+<% end %>
